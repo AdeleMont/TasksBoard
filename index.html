@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>TasksBoard</title>
+</head>
+
+<body class="body">
+    <div class="body__wrapper">
+        <header>
+            <div class="header__title-wrapper">
+                <a class="header__logo" href="#" aria-label="Лого">
+                    <img width="15" height="15" src="./img/tick.svg" alt="logo">
+                </a>
+                <h1 class="header__title">Tasks</h1>
+            </div>
+        </header>
+        <main>
+            <section class="options">
+                <h2 class="visually-hidden">Отобразить как</h2>
+
+                <div class="options__wrapper">
+                    <div class="options__view">
+                        <label for="all-tasks">All tasks</label>
+                        <input id="all-tasks" name="view" type="radio">
+                        <label for="board">Board</label>
+                        <input id="board" name="view" type="radio" checked>
+                        <label for="timeline">Timeline</label>
+                        <input id="timeline" name="view" type="radio">
+                    </div>
+
+                    <div class="options__sorting">
+                        <label for="filter">Filter</label>
+                        <input id="filter" name="filters" type="radio">
+                        <label for="sort">Sort</label>
+                        <input id="sort" name="filters" type="radio" checked>
+
+                        <div class="options__search">
+                            <input type="search" placeholder="Search...">
+                            <!-- <button></button> -->
+                        </div>
+
+                        <select class="options__sorting-select" name="sorting-select">
+                            <option value="new">New</option>
+                            <option value="old">Old</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="options__filter-wrapper">
+                    <select class="options__filter options__filter--priority" name="filter--priority">
+                        <option value="">Priority</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    <select class="options__filter options__filter--assignee" name="filter--assignee">
+                        <option value="">Assignee</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    <select class="options__filter options__filter--due" name="filter--due">
+                        <option value="">Due</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </section>
+            <section class="board">
+                <h2 class="visually-hidden">Доска задач</h2>
+                <div class="board__column board__not-started">
+                    <div class="board__title-wrapper">
+
+                        <div class="column__title-wrapper">
+                            <h3 class="column__title">Not Started</h3>
+                            <span class="column__card-count card-count--columnNotStarted ">0</span>
+                        </div>
+                        <div class="card__column card_column--not-started">
+<!-- 
+                            <article class="card" draggable="true">
+                                <h1 class="card__title">Написать список задач</h1>
+                                <span class="card__comments-count visually-hidden">0</span>
+                                <div class="card__user">
+                                    <img class="card__avatar" src="" alt="" width="15" height="15">
+                                    <p class="card__user-name">Ivan Ivanovich</p>
+                                </div>
+                                <div class="visually-hidden card__status">
+                                    Not Started
+                                </div>
+                                <select class="card__priority">
+                                    <option value="high">High</option>
+                                    <option value="regular">Regular</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </article> -->
+                        </div>
+                        <button class="board__button button__not-started" type="button">+ New</button>
+                    </div>
+                </div>
+                <div class="board__column board__in-progress">
+                    <div class="board__title-wrapper">
+                        <div class="column__title-wrapper">
+                            <h3 class="column__title">In Progress</h3>
+                            <span class="column__card-count card-count--columnInProgress">0</span>
+                        </div>
+
+                        <div class="card__column card_column--in-progress">
+
+                        </div>
+                        <button class="board__button button__in-progress" type="button">+ New</button>
+                    </div>
+                </div>
+                <div class="board__column board__done">
+                    <div class="board__title-wrapper">
+                        <div class="column__title-wrapper">
+                            <h3 class="column__title">Done</h3>
+                            <span class="column__card-count card-count--columnDone">0</span>
+                        </div>
+                        <div class="card__column card_column--done">
+
+                        </div>
+                        <button class="board__button button__done" type="button">+ New</button>
+                    </div>
+                </div>
+                <div class="board__column-groups board__hidden-groups">
+                    <h3 class="board__hiddengroup-title">Hidden groups</h3>
+                    <div class="column__title-wrapper">
+                        <p class="hidden-groups__title">No Status</p>
+                        <span class="hidden-groups__count hidden-groups__count--no-status">0</span>
+                    </div>
+                    <div class="column__title-wrapper">
+                        <p class="hidden-groups__title">Archived</p>
+                        <span class="hidden-groups__count hidden-groups__count--archived">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Открытая карточка -->
+        <section class="overlay visually-hidden">
+            <article class="modal-card">
+                <h1 class="visually-hidden">Карточка задачи</h1>
+                <textarea class="modal-card__task-title" placeholder="Add a new task..."></textarea>
+
+
+                <div class="modal-card__option">
+                    <span class="modal-card-icon"></span>
+                    <h2 class="modal-card__title">Assignee</h2>
+                    <img class="modal-card__avatar" src="" alt="avatar" width="15" height="15">
+                    <p class="modal-card__user-name"></p>
+                </div>
+
+                <div class="modal-card__option">
+                    <span class="modal-card-icon"></span>
+                    <h2 class="modal-card__title">Status</h2>
+                    <select class="modal-card__select-status" name="modal__select-status">
+                        <option value="not-started">Not Started</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+
+                <div class="modal-card__option">
+                    <span class="modal-card-icon"></span>
+                    <h2 class="modal-card__title">Due</h2>
+                    <time datetime="2023-05-23">23 May 2023</time>
+                </div>
+
+                <div class="modal-card__option">
+                    <span class="modal-card-icon"></span>
+                    <h2 class="modal-card__title">Priority</h2>
+                    <select class="modal-card__priority" name="modal__priority">
+                        <option value="high">High</option>
+                        <option value="regular">Regular</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+
+                <div class="modal-card__option">
+                    <span class="modal-card-icon"></span>
+                    <h2 class="modal-card__title">Description</h2>
+                    <a href="#">
+                        <span class="modal-card__description--empty">Empty</span>
+                    </a>
+                    <textarea class="modal-card__description visually-hidden" name="description" id="description"
+                        cols="30" rows="10"></textarea>
+                </div>
+
+                <div class="modal-card__comments">
+                    <div class="modal-card__add-comment">
+                        <img class="modal-card__avatar" src="" alt="avatar" width="15" height="15">
+                        <input class="modal-card__user-comment" type="text" placeholder="Add a comment...">
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Шаблон карточки -->
+        <template id="card">
+            <article class="card" draggable="true">
+                <h1 class="card__title"></h1>
+                <span class="card__comments-count visually-hidden">0</span>
+                <div class="card__user">
+                    <img class="card__avatar" src="" alt="avatar" width="15" height="15">
+                    <p class="card__user-name"></p>
+                </div>
+                <div class="visually-hidden card__status">
+                    Not Started
+                </div>
+                <select class="card__priority" name="priority">
+                    <option value="high">High</option>
+                    <option value="regular">Regular</option>
+                    <option value="low">Low</option>
+                </select>
+            </article>
+        </template>
+
+    </div>
+    <script src="./app.js"></script>
+
+</body>
+
+</html>
